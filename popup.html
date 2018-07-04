@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Dev Tools</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .container {
+            height: 500px;
+            width: 780px;
+            border: 3px solid #333;
+        }
+
+        .frame {
+            height: 500px;
+            width: 590px;
+            border: none;
+            /* margin:0 -5px; */
+        }
+
+        .left {
+            float: left;
+            width: 590px;
+        }
+
+        .right {
+            float: right;
+            width: 190px;
+            height: 100%;
+            background-color: #333;
+            color: #fff;
+
+        }
+
+        .right ul {
+            list-style-type: none;
+            display: block;
+            margin: -3px 0 3px 0;
+            padding-left: 0;
+            width: 100%;
+            font-size: larger;
+
+        }
+
+        .right li {
+            padding: 5px;
+            cursor: pointer;
+            padding-left: 5px;
+            margin-right: -3px;
+        }
+
+        .right li:hover {
+            background: #777;
+        }
+
+        #iFrame {
+            background: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100% 100%"><text fill="%23FF0000" x="50%" y="50%" font-family="\'Lucida Grande\', sans-serif" font-size="24" text-anchor="middle">Loading...</text></svg>') 0px 0px no-repeat;
+        }
+
+        .active {
+            background-color: #555;
+        }
+
+        .header {
+            padding-left: 5px;
+        }
+
+        .about {
+            padding: 10px;
+            background-color: green;
+        }
+    </style>
+
+    <script src="jquery-1.10.2.js"></script>
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <h1 class="header">Online Dev Tools</h1>
+    <div class="container" style="float: left;">
+        <div class="left">
+            <iframe id="iFrame" class="frame"></iframe>
+        </div>
+        <div class="right">
+            <ul>
+                <li id="liUrlEnDe">URL -Encode/Decode</li>
+                <li id="liHtmlEnDe">HTML -Encode/Decode</li>
+                <li id="liCssBeauty">CSS Beautifier </li>
+                <li id="liJsBeauty">JS Beautifier </li>
+                <li id="liXmlBeauty">XML Beautifier </li>
+            </ul>
+            <div style="text-align: center;position: absolute;bottom: 0;text-align: center;width: 200px;">
+                <a href="options.html" target="_blank" style="color: #fff;">about</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

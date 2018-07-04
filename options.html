@@ -1,0 +1,359 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>About Dev Tools</title>
+
+    <style>
+        .profile {
+
+            align-items: center;
+            align-content: center;
+            justify-content: center;
+            padding: 12px;
+            background: #7d7ea0;
+            background: linear-gradient(135deg, #f5515f 0%, #05abe0 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$red', endColorstr='$blue', GradientType=1);
+            color: #343434;
+            font-family: "brandon-grotesque", "Brandon Grotesque", "Source Sans Pro", "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 2px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(115, 7, 16, 0.2);
+        }
+
+        .profile.pre-enter {
+            -webkit-transform-origin: center center;
+            transform-origin: center center;
+            -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+        }
+
+        .profile.pre-enter .avatar {
+            -webkit-transform-origin: center top;
+            transform-origin: center top;
+            -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+        }
+
+        .profile.pre-enter h1,
+        .profile.pre-enter h2,
+        .profile.pre-enter a.follow,
+        .profile.pre-enter a.link {
+            opacity: 0;
+            -webkit-transform: translateY(300px);
+            transform: translateY(300px);
+        }
+
+        .profile.on-enter {
+            -webkit-animation: scaleYIn 1000ms ease-out forwards;
+            animation: scaleYIn 1000ms ease-out forwards;
+        }
+
+        .profile.on-enter .avatar {
+            -webkit-animation: scaleYIn-small 750ms ease-out forwards 1000ms;
+            animation: scaleYIn-small 750ms ease-out forwards 1000ms;
+        }
+
+        .profile.on-enter h1,
+        .profile.on-enter h2,
+        .profile.on-enter a.follow,
+        .profile.on-enter a.link {
+            opacity: 1;
+            -webkit-animation: slideInUp 1000ms ease-out forwards;
+            animation: slideInUp 1000ms ease-out forwards;
+        }
+
+        .profile.on-enter h1 {
+            -webkit-animation-delay: 1050ms;
+            animation-delay: 1050ms;
+        }
+
+        .profile.on-enter h2 {
+            -webkit-animation-delay: 1100ms;
+            animation-delay: 1100ms;
+        }
+
+        .profile.on-enter a.follow {
+            -webkit-animation-delay: 1250ms;
+            animation-delay: 1250ms;
+        }
+
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 2px;
+        }
+
+        .avatar,
+        .info {
+            width: 100%;
+            height: 50%;
+        }
+
+        .avatar {
+            background: url("https://lh3.googleusercontent.com/mqM5afPLU3c0TUy44WBGULpFYQd-bJxAjsDKn8gjzsGO1aLq2hLW0hvVMq4SrVXqlOdmTPeMPg2g=s250-rw-no") no-repeat top center/cover;
+            background-position-x: center;
+            background-position-y: top;
+            background-size: cover;
+            -webkit-clip-path: polygon(0 0, 100% 0, 100% 75%, 0% 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 75%, 0% 100%);
+            transition: 1s all;
+            height: 450px !important;
+        }
+
+        .avatar:hover {
+            -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+            height: 400px !important;
+        }
+
+        .info {
+            display: flex;
+            flex-flow: row wrap;
+            align-items: center;
+            align-content: center;
+            justify-content: center;
+            position: relative;
+            text-align: center;
+        }
+
+        .info h1 {
+            padding: 12px 12px 0;
+            width: 100%;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .info h2,
+        .info a.follow {
+            display: block;
+            margin-top: 4px;
+            border-radius: 2px;
+            padding: 6px;
+            color: white;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .info h2 {
+            background: #f5515f;
+            background: linear-gradient(135deg, #f5825f 0%, #04b2c7 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5825f', endColorstr='#f5005f', GradientType=1);
+        }
+
+        .info a.follow {
+            margin-left: 12px;
+            margin-top: -5px;
+            background: #05abe0;
+            background: linear-gradient(135deg, #05c8e0 0%, #057fe0 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#05c8e0', endColorstr='#057fe0', GradientType=1);
+        }
+
+        .info a.follow:hover,
+        .info a.follow:focus {
+            background: #05c8e0;
+            background: linear-gradient(135deg, #1ee2fa 0%, #1e99fa 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='lighten(#05c8e0, 10%)', endColorstr='lighten(#057fe0, 10%)', GradientType=1);
+        }
+
+        .info a.follow:active {
+            background: #057fe0;
+            background: linear-gradient(135deg, #04b2c7 0%, #0471c7 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='darken(#05c8e0, 5%)', endColorstr='darken(#057fe0, 5%)', GradientType=1);
+        }
+
+
+
+        @media only screen and (min-width: 470px) {
+            .profile {
+                display: flex;
+            }
+            .profile.pre-enter {
+                -webkit-transform: scaleX(0);
+                transform: scaleX(0);
+            }
+            .profile.pre-enter .avatar {
+                -webkit-transform-origin: left center;
+                transform-origin: left center;
+                -webkit-transform: scaleX(0);
+                transform: scaleX(0);
+            }
+            .profile.pre-enter h1,
+            .profile.pre-enter h2,
+            .profile.pre-enter a.follow,
+            .profile.pre-enter a.link {
+                -webkit-transform: translateX(300px);
+                transform: translateX(300px);
+            }
+            .profile.on-enter {
+                -webkit-animation-name: scaleXIn;
+                animation-name: scaleXIn;
+            }
+            .profile.on-enter .avatar {
+                -webkit-animation-name: scaleXIn-small;
+                animation-name: scaleXIn-small;
+            }
+            .profile.on-enter h1,
+            .profile.on-enter h2,
+            .profile.on-enter a.follow,
+            .profile.on-enter a.link {
+                -webkit-animation-name: slideInLeft;
+                animation-name: slideInLeft;
+            }
+
+            .background {
+                mix-blend-mode: overlay;
+            }
+
+            .avatar,
+            .info {
+                width: 50%;
+                height: 100%;
+            }
+
+            .avatar {
+                -webkit-clip-path: polygon(0 0, 100% 0, 75% 100%, 0% 100%);
+                clip-path: polygon(0 0, 100% 0, 75% 100%, 0% 100%);
+                transition: 1s all;
+            }
+
+            .avatar:hover {
+                -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+            }
+
+            .svgclippaths .info {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 56.25%;
+            }
+        }
+
+        @media only screen and (min-width: 470px) and (min-height: 600px) {
+            .profile {
+                max-height: 480px;
+            }
+        }
+
+        h3,
+        h4 {
+            margin: 0 0 5px 0 !important;
+        }
+
+        h3 {
+            font-size: 1.17em !important;
+            font-weight: bold;
+        }
+
+        h4 {
+            font-weight: normal !important;
+            font-size: 16px !important;
+        }
+
+        body,
+        html {
+            height: 100vh;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            align-content: center;
+            justify-content: center;
+            padding: 12px;
+            background: #7d7ea0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, #05abe0 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$red', endColorstr='$blue', GradientType=1);
+            color: #343434;
+            font-family: "brandon-grotesque", "Brandon Grotesque", "Source Sans Pro", "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .social ul {
+            list-style-type: none;
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+        }
+
+        .social li {
+            font-size: medium;
+            font-weight: bold;
+            float: left;
+            padding: 5px;
+        }
+
+        .social li a:visited {
+            color: #0000ee;
+        }
+    </style>
+</head>
+
+<body>
+    <main class='profile' ontouchstart>
+        <div class='background'></div>
+        <aside class='avatar'></aside>
+        <section class='info'>
+            <h1>Rathanavel Subramaniam</h1>
+            <h2>Technology Specalist</h2>
+            <a href="https://feedburner.google.com/fb/a/mailverify?uri=SharePointWALL" class='follow' target="_blank">+ Subscribe</a>
+            <br>
+            <h3>About Me</h3>
+            <h4>I am coder by passion and father by heart. I worked for clients with different technology stack and like to solve
+                unique problems.
+            </h4>
+            <br>
+            <h3>About this (Online Dev Tools) chrome extension</h3>
+            <h4> This extension has a collection of free tools used by developer and designer very often.</h4>
+            <br>
+            <h3>Further more</h3>
+            <h4>
+                <a href="https://ratsubsharewall.blogspot.com" target="_blank">ratsubsharewall</a> - Articles about SharePoint/Office 365/Azure/AI/Angular/NodeJS and more...
+            </h4>
+
+            <div class="social">
+                <h3>Other Handlers</h3>
+                <ul>
+                    <li>
+                        <a href="https://www.linkedin.com/in/rathanavel-subramaniam-s-m-6032b921">LinkedIn</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/Rathanavel">GitHub</a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/rathanavel.subramaniam">Facebook</a>
+                    </li>
+                    <li>
+                        <a href="https://ratsubsharewall.blogspot.com">TechBlog</a>
+                    </li>
+                    <li>
+                        <a href="https://onlinedevtool.blogspot.com">Dev Tools</a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+
+</body>
+
+</html>
