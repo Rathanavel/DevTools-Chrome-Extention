@@ -15,3 +15,4 @@ Provides a collection of various free tools for developers and users out there w
 - Javascript Formatter
 - CSS Beautifier/Formatter
 - XML Beautifier/Formatter
+- Text=>Image watermark
