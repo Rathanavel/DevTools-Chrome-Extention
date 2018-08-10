@@ -16,3 +16,4 @@ Provides a collection of various free tools for developers and users out there w
 - CSS Beautifier/Formatter
 - XML Beautifier/Formatter
 - Text=>Image watermark
+- Base64 Image Data Url converter
