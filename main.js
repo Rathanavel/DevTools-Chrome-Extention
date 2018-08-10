@@ -53,7 +53,7 @@ $(function () {
     $('#liBase64ImageConverter').click(function () {
         $('.right .active').removeClass('active');
         $(this).addClass('active');
-        $('.header')[0].innerText = 'Online Dev Tools - Base⁶⁴ Image Data url Converter';
+        $('.header')[0].innerText = 'Online Dev Tools - Base64 Image Data url Converter';
 
         redirect('https://onlinedevtool.blogspot.com/p/base64-image-encoder-best-online-image.html?mode=true')
     });    
